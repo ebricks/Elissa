@@ -11,7 +11,6 @@
 		11BC0D088DFB73BA3D3E722B499F478A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		1F7D21F72CD0AA115FF6C975AFC91275 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		21CC0CB5A528A92BC0D764DF3150F801 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		46ED75B31C1B78277C6BF14F4031E364 /* Elissa.xib in Resources */ = {isa = PBXBuildFile; fileRef = B71CA11682DD202AB623E0E7A7DAEB04 /* Elissa.xib */; };
 		4DCDB2469E1BFC27B0F11696CD6D667A /* Pods-Elissa_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 85C38D53C9819EF73C826B4EF2C547A0 /* Pods-Elissa_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7D90EB27139846184C7BDE5C8B99C8E7 /* Elissa-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E321B1228E1994054BFA886B0AC23284 /* Elissa-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94A36FC4CB8D8B1E64EC37CE76C54509 /* Pods-Elissa_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C9D905C78305372478A8635D107516F /* Pods-Elissa_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -55,7 +54,6 @@
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A08B62C214F7F637A0FC4AC93DC4412C /* Pods-Elissa_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Elissa_Example-dummy.m"; sourceTree = "<group>"; };
 		A906523A0DA6D816C19AB9429A88370A /* Elissa-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Elissa-prefix.pch"; sourceTree = "<group>"; };
-		B71CA11682DD202AB623E0E7A7DAEB04 /* Elissa.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = Elissa.xib; sourceTree = "<group>"; };
 		B9C27175768F8042BC505D9AA8B74E87 /* Pods-Elissa_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Elissa_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		BE14C3E933982EB7538074000F44AB37 /* Pods-Elissa_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Elissa_Example-resources.sh"; sourceTree = "<group>"; };
 		C312D7DB5AB52716995777EFEEBA73E1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -239,7 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				DA069CFB1FB04B5D00D9A23D /* ElissaItem.xib */,
-				B71CA11682DD202AB623E0E7A7DAEB04 /* Elissa.xib */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -376,7 +373,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46ED75B31C1B78277C6BF14F4031E364 /* Elissa.xib in Resources */,
 				DA069CFC1FB04B5D00D9A23D /* ElissaItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

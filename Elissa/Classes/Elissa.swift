@@ -39,7 +39,7 @@ public class ElissaConfiguration: NSObject {
 }
 
 open class Elissa: UIView, ElissaItemDelegate {
-
+    
     private weak var itemsView: UIStackView!
     
     private let arrowSize: CGSize = CGSize(width: 20, height: 10)
@@ -66,13 +66,15 @@ open class Elissa: UIView, ElissaItemDelegate {
         
         //Add Items Stack View
         let itemsView = UIStackView()
+        itemsView.translatesAutoresizingMaskIntoConstraints = false
         itemsView.axis = .horizontal
         itemsView.spacing = 0
         itemsView.alignment = .fill
         itemsView.distribution = .fill
-        itemsView.backgroundColor = configuration.backgroundColor
         self.itemsView = itemsView
         addSubview(itemsView)
+        
+        backgroundColor = configuration.backgroundColor
         
         let bundle = Bundle(for: type(of: self))
         
@@ -93,14 +95,19 @@ open class Elissa: UIView, ElissaItemDelegate {
             } else {
                 elissaItem.iconImageView.removeFromSuperview()
             }
-            //Layout
-            layoutIfNeeded()
         }
+        
+        //Layout
+        layoutIfNeeded()
+        
+        //Adjust Frame
         calculatePositon()
-        self.itemsView.layer.cornerRadius = 3.0
-
-        self.itemsView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
-        bringSubview(toFront: self.itemsView)
+        
+        //Add Constraint
+        itemsView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
+        itemsView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
+        itemsView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        itemsView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
     }
     
     open override func didMoveToSuperview() {
@@ -135,10 +142,10 @@ open class Elissa: UIView, ElissaItemDelegate {
         for arrangedSubview in self.itemsView.arrangedSubviews {
             if let elissaItem = arrangedSubview as? ElissaItem {
                 if let _ = elissaItem.iconImageView {
-                    updatedFrame.size.width += (elissaItem.iconImageView.frame.size.width + elissaItem.messageLabel.frame.size.width + margin * 3)
+                    updatedFrame.size.width = updatedFrame.size.width + (elissaItem.iconImageView.frame.size.width + elissaItem.messageLabel.frame.size.width + margin * 3)
                 }
                 else {
-                    updatedFrame.size.width += (elissaItem.messageLabel.frame.size.width + margin * 2)
+                    updatedFrame.size.width = updatedFrame.size.width + (elissaItem.messageLabel.frame.size.width + margin * 2)
                 }
             }
         }
@@ -198,3 +205,4 @@ open class Elissa: UIView, ElissaItemDelegate {
         completionHandler?()
     }
 }
+
