@@ -18,6 +18,7 @@
 		A2DE3DBF14EAA747449D06FB847326C1 /* Pods-Elissa_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A08B62C214F7F637A0FC4AC93DC4412C /* Pods-Elissa_Example-dummy.m */; };
 		B32B4893B7B1C5DBD82310251906E3B8 /* Elissa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E64FC9A3BDBE8C5B8300D3F9437189 /* Elissa.swift */; };
 		B4ABFA80C86626CE6D65501AE3E626AD /* Pods-Elissa_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4FD91A1CD88F162BAA1AF7B56D7D1B /* Pods-Elissa_Tests-dummy.m */; };
+		DA069CFC1FB04B5D00D9A23D /* ElissaItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA069CFB1FB04B5D00D9A23D /* ElissaItem.xib */; };
 		DE58E7DDE739DCBB25B05D4DD3CC21A5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A40A870CA7F8FEFF775186000C0CDB8 /* UIViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		C312D7DB5AB52716995777EFEEBA73E1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7CF3E11FB5759434E540A11F6018395 /* Pods-Elissa_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Elissa_Example-frameworks.sh"; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		DA069CFB1FB04B5D00D9A23D /* ElissaItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ElissaItem.xib; sourceTree = "<group>"; };
 		DBAF3A195C062D0946F08BD79078F962 /* Elissa.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Elissa.xcconfig; sourceTree = "<group>"; };
 		E321B1228E1994054BFA886B0AC23284 /* Elissa-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Elissa-umbrella.h"; sourceTree = "<group>"; };
 		E3CD7308EF3E1D4F45F34D82DC9F3E64 /* Elissa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Elissa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,6 +238,7 @@
 		C4E689875CF99BD2173707C028E71FA5 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				DA069CFB1FB04B5D00D9A23D /* ElissaItem.xib */,
 				B71CA11682DD202AB623E0E7A7DAEB04 /* Elissa.xib */,
 			);
 			path = Assets;
@@ -374,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46ED75B31C1B78277C6BF14F4031E364 /* Elissa.xib in Resources */,
+				DA069CFC1FB04B5D00D9A23D /* ElissaItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,7 +509,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Elissa/Elissa-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Elissa/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Elissa/Elissa.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -569,7 +573,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Elissa/Elissa-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Elissa/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Elissa/Elissa.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;

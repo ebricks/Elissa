@@ -8,9 +8,28 @@
 
 import UIKit
 
-public class ElissaConfiguration: NSObject {
+public protocol ElissaItemDelegate: class {
+    func elissaItemDidGetTapped(_ item: ElissaItem)
+}
+
+public class ElissaItem: UIView {
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var iconImageView: UIImageView!
+    
+    public weak var delegate: ElissaItemDelegate? = nil
+    
+    @IBAction func actionButtonTapped(_ sender: UIButton) {
+        delegate?.elissaItemDidGetTapped(self)
+    }
+}
+
+public class ElissaItemConfig: NSObject {
     public var message: String?
     public var image: UIImage?
+}
+
+public class ElissaConfiguration: NSObject {
+    public var items: [ElissaItemConfig] = []
     public var backgroundColor: UIColor?
     public var textColor: UIColor?
     public var font: UIFont?
@@ -19,11 +38,10 @@ public class ElissaConfiguration: NSObject {
     public override init() {}
 }
 
-open class Elissa: UIView {
+open class Elissa: UIView, ElissaItemDelegate {
 
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var iconImageView: UIImageView!
-
+    private weak var itemsView: UIStackView!
+    
     private let arrowSize: CGSize = CGSize(width: 20, height: 10)
     private let popupHeight: CGFloat = 36.0
     private let offsetToSourceView: CGFloat = 5.0
@@ -46,31 +64,43 @@ open class Elissa: UIView {
         
         super.init(frame: CGRect.zero)
         
+        //Add Items Stack View
+        let itemsView = UIStackView()
+        itemsView.axis = .horizontal
+        itemsView.spacing = 0
+        itemsView.alignment = .fill
+        itemsView.distribution = .fill
+        itemsView.backgroundColor = configuration.backgroundColor
+        self.itemsView = itemsView
+        addSubview(itemsView)
+        
         let bundle = Bundle(for: type(of: self))
-        let views = bundle.loadNibNamed("Elissa", owner: self, options: nil)
         
-        guard let embeddedContentView = views?.first as? UIView else { return }
-        addSubview(embeddedContentView)
-        
-        embeddedContentView.backgroundColor = configuration.backgroundColor
-        
-        messageLabel.text = configuration.message
-        messageLabel.font = configuration.font
-        messageLabel.textColor = configuration.textColor
-        layoutIfNeeded()
-        
-        if let image = configuration.image {
-            iconImageView.image = image
-            iconImageView.tintColor = configuration.textColor
-        } else {
-            iconImageView.removeFromSuperview()
+        for itemConfig in configuration.items {
+            //Make View
+            let views = bundle.loadNibNamed("ElissaItem", owner: nil, options: nil)
+            guard let elissaItem = views?.first as? ElissaItem else { return }
+            itemsView.addArrangedSubview(elissaItem)
+            elissaItem.delegate = self
+            //Load Data Into Item
+            elissaItem.messageLabel.text = itemConfig.message
+            elissaItem.messageLabel.font = configuration.font
+            elissaItem.messageLabel.textColor = configuration.textColor
+            //Image
+            if let image = itemConfig.image {
+                elissaItem.iconImageView.image = image
+                elissaItem.iconImageView.tintColor = configuration.textColor
+            } else {
+                elissaItem.iconImageView.removeFromSuperview()
+            }
+            //Layout
+            layoutIfNeeded()
         }
-        
         calculatePositon()
-        embeddedContentView.layer.cornerRadius = 3.0
+        self.itemsView.layer.cornerRadius = 3.0
 
-        embeddedContentView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
-        bringSubview(toFront: embeddedContentView)
+        self.itemsView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+        bringSubview(toFront: self.itemsView)
     }
     
     open override func didMoveToSuperview() {
@@ -97,20 +127,22 @@ open class Elissa: UIView {
         return staticElissa
     }
     
-    @IBAction func actionButtonTapped(_ sender: UIButton) {
-        completionHandler?()
-    }
-    
     private func calculatePositon() {
         guard let sourceView = sourceView else { return }
         var updatedFrame = CGRect()
         
         let margin: CGFloat = 8
-        if configuration.image != nil {
-            updatedFrame.size.width = iconImageView.frame.size.width + messageLabel.frame.size.width + margin * 3
-        } else {
-            updatedFrame.size.width = messageLabel.frame.size.width + margin * 2
+        for arrangedSubview in self.itemsView.arrangedSubviews {
+            if let elissaItem = arrangedSubview as? ElissaItem {
+                if let _ = elissaItem.iconImageView {
+                    updatedFrame.size.width += (elissaItem.iconImageView.frame.size.width + elissaItem.messageLabel.frame.size.width + margin * 3)
+                }
+                else {
+                    updatedFrame.size.width += (elissaItem.messageLabel.frame.size.width + margin * 2)
+                }
+            }
         }
+        
         updatedFrame.size.height = popupHeight
         updatedFrame.origin.x = sourceView.center.x - updatedFrame.size.width / 2
         updatedFrame.origin.y = (sourceView.frame.origin.y - popupHeight) - arrowSize.height + configuration.arrowOffset
@@ -158,5 +190,11 @@ open class Elissa: UIView {
         var frame = view.frame
         frame.origin.x -= offset
         view.frame = frame
+    }
+    
+    //MARK: ElissaItem Delegate
+    
+    public func elissaItemDidGetTapped(_ item: ElissaItem) {
+        completionHandler?()
     }
 }
